@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load static %}
+{% block contant %}
+<form action="#" method="post">
+    {% csrf_token %}
+    {{var.as_p}}
+    <button class="btn btn-success" value="submit" type="submit">Update</button>
+</form>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block msg %}
+ {% if messages %}
+    {% for message in messages %}
+    <p {% if message.tags %}, class="alter alert-{{message.tags}} mb-5" {% endif %}>{{message}}</p>
+    {% endfor %}
+    {% endif %}
+{% endblock msg %}
+
+{% block contant %}
+{% for em in emp %}
+<div class="mt-4 p-5 bg-primary text-white rounded">
+    <h1>{{em.title}}</h1>
+    <p>{{em.desc}}</p> <br>
+    <a href="{% url 'update_blog' em.id %}" class="btn btn-warning" >Edit</a>
+    <form action="{% url 'delete_blog' em.id %}" method="POST" class="d-inline">
+        {% csrf_token %}
+        {{var.as_p}}
+        <input type="submit" class="btn btn-danger" value="Delete">
+    </form>
+</div>
+{% endfor %}
+{% endblock contant %}
